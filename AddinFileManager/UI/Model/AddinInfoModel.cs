@@ -1,79 +1,66 @@
-﻿using System;
+﻿using AddinFileManager.Common;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AddinFileManager.UI.Model
 {
-    public class AddinInfoModel : ModelBase
+    public partial class AddinInfoModel : ObservableObject
     {
-        private string m_InstallLocation;
-        public string InstallLocation
+        [ObservableProperty]
+        private string installLocation;
+
+        [ObservableProperty]
+        private string addinFileName;
+
+        [ObservableProperty]
+        private string remark;
+
+        [ObservableProperty]
+        private bool isOn;
+
+        partial void OnIsOnChanged(bool value)
         {
-            get
+            if (!File.Exists(FileFullPath)) return;
+            var fileExt = Path.GetExtension(FileFullPath);
+            var fileName = Path.GetFileName(FileFullPath);
+            var folder = Path.GetDirectoryName(FileFullPath);
+
+            if (isOn && fileExt == CommonString.DisableExt)
             {
-                return m_InstallLocation;
+                fileName = fileName.Replace(CommonString.DisableExt, "");
+                var newFile = Path.Combine(folder, fileName);
+                File.Move(FileFullPath, newFile);
+                FileFullPath = newFile;
             }
-            set
+            else if (!isOn && fileExt != CommonString.DisableExt)
             {
-                if (value != m_InstallLocation)
-                {
-                    m_InstallLocation = value;
-                    RaisePropertyChanged(nameof(InstallLocation));
-                }
+                fileName = fileName + CommonString.DisableExt;
+                var newFile = Path.Combine(folder, fileName);
+                File.Move(FileFullPath, newFile);
+                FileFullPath = newFile;
             }
         }
 
-        private string m_AddinFileName;
-        public string AddinFileName
-        {
-            get
-            {
-                return m_AddinFileName;
-            }
-            set
-            {
-                if (value != m_AddinFileName)
-                {
-                    m_AddinFileName = value;
-                    RaisePropertyChanged(nameof(AddinFileName));
-                }
-            }
-        }
+        public string FileFullPath { get; set; }
 
-        private string m_Remark;
-        public string Remark
+        [RelayCommand]
+        private void OpenFolder()
         {
-            get
+            var folder = Path.GetDirectoryName(FileFullPath);
+            if (!Directory.Exists(folder)) return;
+            var psi = new ProcessStartInfo
             {
-                return m_Remark;
-            }
-            set
-            {
-                if (value != m_Remark)
-                {
-                    m_Remark = value;
-                    RaisePropertyChanged(nameof(Remark));
-                }
-            }
-        }
-
-        private bool m_IsOn;
-        public bool IsOn
-        {
-            get
-            {
-                return m_IsOn;
-            }
-            set
-            {
-                if (value != m_IsOn)
-                {
-                    m_IsOn = value;
-                    RaisePropertyChanged(nameof(IsOn));
-                }
-            }
+                FileName = folder,
+                UseShellExecute = true,
+            };
+            Process.Start(psi);
         }
     }
 }

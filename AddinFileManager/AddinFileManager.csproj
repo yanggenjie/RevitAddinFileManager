@@ -10,10 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Common\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
     <PackageReference Include="MahApps.Metro" Version="2.4.10" />
   </ItemGroup>
 
