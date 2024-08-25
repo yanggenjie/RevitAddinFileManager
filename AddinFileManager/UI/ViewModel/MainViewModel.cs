@@ -1,12 +1,14 @@
 ﻿using AddinFileManager.Common;
 using AddinFileManager.UI.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
+using ControlzEx.Standard;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace AddinFileManager.UI.ViewModel
@@ -22,6 +24,8 @@ namespace AddinFileManager.UI.ViewModel
             "BIM360GlueRevitAddin",
             "BIM360GlueRevit2016Addin",
             "Dynamo",
+            "RevitAddinManager",
+            "RevitLookup",
         };
         [ObservableProperty]
         private string selectedVersion;
@@ -53,33 +57,53 @@ namespace AddinFileManager.UI.ViewModel
             {
                 var fileName = Path.GetFileName(file);
                 var fileExt = Path.GetExtension(file);
-                var allLines = File.ReadAllLines(file).Where(x => x.StartsWith("<Name>"));
+                //var allLines = File.ReadAllLines(file).Where(x => x.Contains("<Name>"));
+                //if (allLines.Any())
+                //{
+                //    foreach (var line in allLines)
+                //    {
+                //        var addinName = line.Replace("<Name>", "").Replace("</Name>", "").Replace(" ", "");
+                //        var addinInfo = new AddinInfoModel()
+                //        {
+                //            FileFullPath = file,
+                //            InstallLocation = installLocation,
+                //            AddinFileName = addinName,
+                //            IsOn = true,
+                //        };
+                //        AddinFileItems.Add(addinInfo);
+                //    }
+                //}
+                //else
+                //{
+                //}
+                var addinInfo = new AddinInfoModel()
+                {
+                    FileFullPath = file,
+                    InstallLocation = installLocation,
+                    AddinFileName = fileName,
+                    IsOn = fileExt != CommonString.DisableExt,
+                };
+                var allLines = File.ReadAllLines(file).Where(x => x.Contains("<Name>"));
                 if (allLines.Any())
                 {
                     foreach (var line in allLines)
                     {
                         var addinName = line.Replace("<Name>", "").Replace("</Name>", "").Replace(" ", "");
-                        var addinInfo = new AddinInfoModel()
-                        {
-                            FileFullPath = file,
-                            InstallLocation = installLocation,
-                            AddinFileName = addinName,
-                            IsOn = true,
-                        };
-                        AddinFileItems.Add(addinInfo);
+                        Regex rgx = new Regex("\\s+");
+                        string result = rgx.Replace(addinName, "");
+                        addinInfo.Remark = result;
+                        break;
+                        //var addinInfo = new AddinInfoModel()
+                        //{
+                        //    FileFullPath = file,
+                        //    InstallLocation = installLocation,
+                        //    AddinFileName = addinName,
+                        //    IsOn = true,
+                        //};
+                        //AddinFileItems.Add(addinInfo);
                     }
                 }
-                else
-                {
-                    var addinInfo = new AddinInfoModel()
-                    {
-                        FileFullPath = file,
-                        InstallLocation = installLocation,
-                        AddinFileName = fileName,
-                        IsOn = fileExt != CommonString.DisableExt,
-                    };
-                    AddinFileItems.Add(addinInfo);
-                }
+                AddinFileItems.Add(addinInfo);
             }
         }
 
@@ -101,7 +125,7 @@ namespace AddinFileManager.UI.ViewModel
 
         public MainViewModel()
         {
-
+            SelectedVersion = RevitVersionItems[5];
         }
     }
 }

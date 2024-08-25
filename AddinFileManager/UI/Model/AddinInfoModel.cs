@@ -38,6 +38,7 @@ namespace AddinFileManager.UI.Model
                 var newFile = Path.Combine(folder, fileName);
                 File.Move(FileFullPath, newFile);
                 FileFullPath = newFile;
+                AddinFileName = fileName;
             }
             else if (!isOn && fileExt != CommonString.DisableExt)
             {
@@ -45,6 +46,7 @@ namespace AddinFileManager.UI.Model
                 var newFile = Path.Combine(folder, fileName);
                 File.Move(FileFullPath, newFile);
                 FileFullPath = newFile;
+                AddinFileName = fileName;
             }
         }
 

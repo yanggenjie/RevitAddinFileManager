@@ -14,7 +14,7 @@
         <ListView ItemsSource="{Binding RevitVersionItems}" SelectedItem="{Binding SelectedVersion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <DataGrid Grid.Column="1" ItemsSource="{Binding AddinFileItems}" Style="{StaticResource DataGridDefault}">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="*" Binding="{Binding InstallLocation}" Header="安装位置"/>
+                <DataGridTextColumn Width="100" Binding="{Binding InstallLocation}" Header="安装位置"/>
                 <DataGridTemplateColumn Width="*" Header="Addin文件名">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -22,15 +22,15 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Width="*" Binding="{Binding Remark, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="备注"/>
-                <DataGridTemplateColumn Width="0.5*" Header="禁用">
+                <DataGridTextColumn Width="*" Binding="{Binding Remark, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Name" IsReadOnly="True"/>
+                <DataGridTemplateColumn Width="70" Header="禁用">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <mah:ToggleSwitch IsOn="{Binding IsOn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" OffContent="" OnContent=""/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="*" Header="打开目录">
+                <DataGridTemplateColumn Width="120" Header="打开目录">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Width="80" Height="30" Command="{Binding OpenFolderCommand}" Content="打开目录"/>
