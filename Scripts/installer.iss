@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Revit插件管理器"
-#define MyAppVersion "1.0.0"
+#define MyAppVersion "1.0.1"
 #define MyAppPublisher "Ryze Yang, Inc."
 #define MyAppURL "www.yanggenjie.cn"
 #define MyAppExeName "AddinFileManager.exe"
@@ -23,7 +23,7 @@ DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 OutputDir=./dist
-OutputBaseFilename=Revit插件管理器(20240825-V1.0.0)
+OutputBaseFilename=Revit插件管理器(20240825-V1.0.1)
 Compression=lzma2/max
 SolidCompression=no
 WizardStyle=modern

@@ -184,26 +184,26 @@ if __name__ == '__main__':
     # 更新Dll版本号
     # UpdateAssemblyVersion(sourceDir)
     # 更新安装包版本号
-    # issFilePath = os.path.join(scriptsDir, issFileName)
-    # with open(file=issFilePath, mode='r', encoding='utf-8') as issFile:
-    #     issContent = issFile.readlines()
-    #     for index, value in enumerate(issContent):
-    #         if value.startswith('#define MyAppVersion'):
-    #             dot = value.rfind('.')+1
-    #             num = int(value[dot:-2]) + 1
-    #             value = value[:dot]+str(num)+value[-2:]
-    #             # value = value.replace(value[dot:-2], str(num))
-    #             issContent[index] = value
-    #         elif value.startswith('OutputBaseFilename='):
-    #             # today = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    #             today = datetime.datetime.now().strftime('%Y%m%d')
-    #             lastDate = value[value.index('(') + 1:value.index('-')]
-    #             dot = value.rfind('.')+1
-    #             num = int(value[dot:-2]) + 1
-    #             value = value[:dot]+str(num)+value[-2:]
-    #             issContent[index] = value.replace(lastDate, today)
-    # with open(file=issFilePath, mode='w', encoding='utf-8') as issFile:
-    #     issFile.writelines(issContent)
+    issFilePath = os.path.join(scriptsDir, issFileName)
+    with open(file=issFilePath, mode='r', encoding='utf-8') as issFile:
+        issContent = issFile.readlines()
+        for index, value in enumerate(issContent):
+            if value.startswith('#define MyAppVersion'):
+                dot = value.rfind('.')+1
+                num = int(value[dot:-2]) + 1
+                value = value[:dot]+str(num)+value[-2:]
+                # value = value.replace(value[dot:-2], str(num))
+                issContent[index] = value
+            elif value.startswith('OutputBaseFilename='):
+                # today = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                today = datetime.datetime.now().strftime('%Y%m%d')
+                lastDate = value[value.index('(') + 1:value.index('-')]
+                dot = value.rfind('.')+1
+                num = int(value[dot:-2]) + 1
+                value = value[:dot]+str(num)+value[-2:]
+                issContent[index] = value.replace(lastDate, today)
+    with open(file=issFilePath, mode='w', encoding='utf-8') as issFile:
+        issFile.writelines(issContent)
 
     # 清理bin目录
     binDir = os.path.join(sourceDir, "bin\\publish\\win-x64")
