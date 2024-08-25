@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:AddinFileManager"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="addin文件管理"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="Revit插件管理器"
         Width="1150" Height="650" WindowStartupLocation="CenterScreen" mc:Ignorable="d">
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
