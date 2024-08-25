@@ -13,10 +13,20 @@
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 		<OutputPath>../bin</OutputPath>
 		<PlatformTarget>AnyCPU</PlatformTarget>
+		<ApplicationIcon>软件管理.ico</ApplicationIcon>
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="Resource\Icons\软件管理.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Include="软件管理.ico" />
+	</ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
     <PackageReference Include="MahApps.Metro" Version="2.4.10" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\软件管理.png" />
   </ItemGroup>
 
 </Project>
