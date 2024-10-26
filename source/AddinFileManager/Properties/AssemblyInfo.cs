@@ -8,11 +8,11 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("AddinFileManager")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Revit插件管理器,方便禁用和启用Revit插件")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("MS")]
+[assembly: AssemblyCompany("RyzeYang")]
 [assembly: AssemblyProduct("AddinFileManager")]
-[assembly: AssemblyCopyright("Copyright © MS 2024")]
+[assembly: AssemblyCopyright("Copyright © RyzeYang 2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

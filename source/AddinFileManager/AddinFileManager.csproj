@@ -288,6 +288,7 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\CommunityToolkit.Mvvm.8.3.2\analyzers\dotnet\roslyn4.3\cs\CommunityToolkit.Mvvm.CodeFixers.dll" />
+    <Analyzer Include="..\packages\CommunityToolkit.Mvvm.8.3.2\analyzers\dotnet\roslyn4.3\cs\CommunityToolkit.Mvvm.CodeFixers.dll" />
     <Analyzer Include="..\packages\CommunityToolkit.Mvvm.8.3.2\analyzers\dotnet\roslyn4.3\cs\CommunityToolkit.Mvvm.SourceGenerators.dll" />
   </ItemGroup>
   <ItemGroup>

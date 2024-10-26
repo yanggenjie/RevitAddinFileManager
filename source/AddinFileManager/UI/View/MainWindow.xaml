@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:AddinFileManager"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="Revit插件管理器"
-        Width="1150" Height="650" WindowStartupLocation="CenterScreen" mc:Ignorable="d">
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="Revit插件管理器 - Copyright © RyzeYang 2024" Width="1150" Height="650"
+        WindowStartupLocation="CenterScreen" mc:Ignorable="d">
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -18,7 +19,7 @@
                 <DataGridTemplateColumn Width="*" Header="Addin文件名">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox BorderThickness="0" IsReadOnly="True" Text="{Binding AddinFileName}" />
+                            <TextBox BorderThickness="0" IsReadOnly="True" Text="{Binding AddinFileName}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
